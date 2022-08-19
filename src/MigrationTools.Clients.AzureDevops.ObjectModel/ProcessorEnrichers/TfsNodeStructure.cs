@@ -440,12 +440,12 @@ namespace MigrationTools.Enrichers
             }
 
             var invertedPath = "!" + userFriendlyPath;
-            var exclusionPatterns = _nodeBasePaths.Where(oneBasePath => oneBasePath.StartsWith("!", StringComparison.InvariantCulture));
-            if (_nodeBasePaths.Any(oneBasePath => userFriendlyPath.StartsWith(oneBasePath)) &&
-                !exclusionPatterns.Any(oneBasePath => invertedPath.StartsWith(oneBasePath)))
-            {
-                return true;
-            }
+            // var exclusionPatterns = _nodeBasePaths.Where(oneBasePath => oneBasePath.StartsWith("!", StringComparison.InvariantCulture));
+            // if (_nodeBasePaths.Any(oneBasePath => userFriendlyPath.StartsWith(oneBasePath)) &&
+            //     !exclusionPatterns.Any(oneBasePath => invertedPath.StartsWith(oneBasePath)))
+            // {
+            //     return true;
+            // }
 
             Log.LogWarning("The node {nodePath} is being excluded due to your basePath setting. ", userFriendlyPath);
             return false;
