@@ -38,12 +38,8 @@ jobs:
     - name: dotnet restore
       run: dotnet restore
 
-    - name: Copy files
-      run: |
-        mkdir artifacts/MigrationTools
-
     - name: dotnet build
-      run: dotnet build --configuration ${{ env.Configuration }} --no-restore --output artifacts/MigrationTools
+      run: dotnet build --configuration ${{ env.Configuration }} --no-restore
 
     # - name: dotnet test (L0 & L1)
     #   run: dotnet test  --configuration ${{ env.Configuration }} --collect "Code coverage" --no-build --filter "(TestCategory=L0|TestCategory=L1)"
@@ -58,5 +54,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: my-artifact
-        path: artifacts/MigrationTools
+        path: D:\a\azure-devops-migration-tools\azure-devops-migration-tools\src\MigrationTools\bin\Release
         retention-days: 5
