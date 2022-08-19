@@ -38,8 +38,12 @@ jobs:
     - name: dotnet restore
       run: dotnet restore
 
+    - name: Copy files
+      run: |
+        mkdir artifacts/MigrationTools
+
     - name: dotnet build
-      run: dotnet build --configuration ${{ env.Configuration }} --no-restore
+      run: dotnet build --configuration ${{ env.Configuration }} --no-restore --output artifacts/MigrationTools
 
     # - name: dotnet test (L0 & L1)
     #   run: dotnet test  --configuration ${{ env.Configuration }} --collect "Code coverage" --no-build --filter "(TestCategory=L0|TestCategory=L1)"
@@ -50,6 +54,9 @@ jobs:
     # - name: dotnet test (L?) - tests with No Catagory
     #   run: dotnet test  --configuration ${{ env.Configuration }} --collect "Code coverage" --no-build --filter "(TestCategory!=L0&TestCategory!=L1&TestCategory!=L2&TestCategory!=L3)"
 
-    - name: Copy files
-      run: |
-        mkdir artifacts/MigrationTools
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: artifacts/MigrationTools
+        retention-days: 5
